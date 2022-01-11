@@ -29,4 +29,43 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
-renderer.render(scene, camera)
+
+//Adapt frame rate
+//Time
+//let time = Date.now()
+
+// CLock
+const clock = new THREE.Clock()
+
+//Animations
+const tick = () => 
+{
+    /* Adapt frame rate
+    //Time
+    const currenTime = Date.now()
+    const deltaTime = currenTime - time
+    time = currenTime
+
+    console.log(deltaTime);
+    */
+
+    // Clock
+    const elapsedTime = clock.getElapsedTime()
+
+    // Update object
+    //mesh.rotation.y += 0.001 * deltaTime
+    mesh.rotation.y = elapsedTime * Math.PI * 1
+
+    //Another way to animate shapes is with libraries, for example: CSAP
+    // npm install --save gsap@3.5.1
+
+    mesh.position.y = Math.sin(elapsedTime)
+    mesh.position.x = Math.cos(elapsedTime)
+
+    //Render 
+    renderer.render(scene, camera)
+
+    window.requestAnimationFrame(tick)
+}
+
+tick()
