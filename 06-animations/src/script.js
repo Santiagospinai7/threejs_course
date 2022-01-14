@@ -1,6 +1,8 @@
 import './style.css'
 import * as THREE from 'three'
 
+import gsap from 'gsap'
+
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -35,7 +37,15 @@ renderer.setSize(sizes.width, sizes.height)
 //let time = Date.now()
 
 // CLock
-const clock = new THREE.Clock()
+//const clock = new THREE.Clock()
+
+gsap.to(mesh.position, {
+    duration: 1, delay: 1, x: 2,
+})
+
+gsap.to(mesh.position, {
+    duration: 1, delay: 2, x:0
+})
 
 //Animations
 const tick = () => 
@@ -50,17 +60,17 @@ const tick = () =>
     */
 
     // Clock
-    const elapsedTime = clock.getElapsedTime()
+    //const elapsedTime = clock.getElapsedTime()
 
     // Update object
     //mesh.rotation.y += 0.001 * deltaTime
-    mesh.rotation.y = elapsedTime * Math.PI * 1
+    //mesh.rotation.y = elapsedTime * Math.PI * 1
 
     //Another way to animate shapes is with libraries, for example: CSAP
     // npm install --save gsap@3.5.1
 
-    mesh.position.y = Math.sin(elapsedTime)
-    mesh.position.x = Math.cos(elapsedTime)
+    //mesh.position.y = Math.sin(elapsedTime)
+    //mesh.position.x = Math.cos(elapsedTime)
 
     //Render 
     renderer.render(scene, camera)
