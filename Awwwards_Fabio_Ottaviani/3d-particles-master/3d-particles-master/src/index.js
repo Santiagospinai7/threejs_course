@@ -98,7 +98,12 @@ const animate = function () {
   requestAnimationFrame( animate );
   renderer.render( scene, camera );
 
-  // skull.particlesMaterial.uniforms.uTime.value = clock.getElapsedTime()
+  if(skull.isActive){
+    skull.particlesMaterial.uniforms.uTime.value = clock.getElapsedTime()
+  }
+  if(horse.isActive){
+    horse.particlesMaterial.uniforms.uTime.value = clock.getElapsedTime()
+  }
 };
 animate();
 
