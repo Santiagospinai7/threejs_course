@@ -12,24 +12,26 @@ const scene = new THREE.Scene()
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
 const mesh = new THREE.Mesh(geometry, material)
-mesh.rotation.z = 0.5
 scene.add(mesh)
 
-const group = new THREE.Group()
-scene.add(group)
+/**
+ * Group
+ */
+// const group = new THREE.Group()
+// scene.add(group)
 
-const cube1 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0xff0000 })
-)
-group.add(cube1)
+// const cube1 = new THREE.Mesh(
+//     new THREE.BoxGeometry(1, 1, 1),
+//     new THREE.MeshBasicMaterial({ color: 0xff0000 })
+// )
+// group.add(cube1)
 
-const cube2 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-)
-cube2.position.x = -2
-group.add(cube2)
+// const cube2 = new THREE.Mesh(
+//     new THREE.BoxGeometry(1, 1, 1),
+//     new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+// )
+// cube2.position.x = -2
+// group.add(cube2)
 
 /**
  * Sizes
@@ -54,3 +56,21 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.render(scene, camera)
+
+const clock = new THREE.Clock()
+
+// Animations
+const tick = () => {
+  // Time
+  const elapsedTime = clock.getElapsedTime()
+  console.log(elapsedTime)
+
+  mesh.position.y = Math.sin(elapsedTime)
+  mesh.position.x = Math.cos(elapsedTime)
+
+  renderer.render(scene, camera)
+
+  window.requestAnimationFrame(tick)
+}
+
+tick()
